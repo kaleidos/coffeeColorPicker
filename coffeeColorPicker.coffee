@@ -15,6 +15,7 @@ class CoffeeColorPicker
         @._rect = el[0].getBoundingClientRect()
         @._color = @settings.color
         @._setColor(@._color.hue, @._color.sat,  @._color.lit)
+        @._bindEvents()
 
     refresh: ->
         @._rect = @.el[0].getBoundingClientRect()
@@ -82,10 +83,7 @@ $ = window.jQuery || window.Zepto
 picker = (el, options) ->
     el = $(el)
     if el.data("coffeeColorPicker") is undefined
-        picker = new CoffeeColorPicker(el, options)
-        picker._bindEvents()
-        return picker
-
+        return new CoffeeColorPicker(el, options)
     return el.data("coffeeColorPicker")
 
 

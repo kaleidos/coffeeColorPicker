@@ -14,16 +14,18 @@ module.exports = (grunt) ->
             build:
                 files:
                     'dist/coffeeColorPicker.min.js': 'dist/coffeeColorPicker.js'
+                    'dist/coffeeColorPicker.angular.min.js': 'dist/coffeeColorPicker.angular.js'
 
         coffee:
             dev:
                 files:
                     'dist/coffeeColorPicker.js': 'coffeeColorPicker.coffee',
+                    'dist/coffeeColorPicker.angular.js': 'coffeeColorPicker.angular.coffee',
 
         coffeelint:
             app:
                 files:
-                    src: ['coffeeColorPicker.coffee']
+                    src: ['coffeeColorPicker.coffee', 'coffeeColorPicker.angular.coffee']
                 options:
                     max_line_length:
                         value: 120
@@ -37,6 +39,7 @@ module.exports = (grunt) ->
                 tasks: ['coffee']
                 files: [
                     'coffeeColorPicker.coffee'
+                    'coffeeColorPicker.angular.coffee'
                 ]
 
         clean: [

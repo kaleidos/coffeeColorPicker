@@ -3,7 +3,12 @@ CoffeeColorPickerDirective = ->
         restrict: "A"
         link: (scope, elm, attrs) ->
             element = angular.element(elm)
-            element.coffeeColorPicker()
+            if attrs.coffeeColorPickerOptions
+                options = scope.$eval(attrs.coffeeColorPickerOptions)
+                element.coffeeColorPicker(options)
+            else
+                element.coffeeColorPicker()
+
             element.on 'pick', (event, color) ->
                 scope.$color = color
                 scope.$apply () ->

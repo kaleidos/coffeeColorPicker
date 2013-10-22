@@ -6,7 +6,7 @@ class CoffeeColorPicker
                 sat: 50
                 lit: 50
             freezeTime: 1000
-        @.settings = $.extend({}, @.settings, options)
+        @.settings = $.extend(true, {}, @.settings, options)
 
         @.el = el
         @._rect = el[0].getBoundingClientRect()

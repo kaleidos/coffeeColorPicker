@@ -13,12 +13,14 @@ You can set various options on Coffee Color Picker, the available options are:
 
 To configure it in jQuery follow this example:
 
-.. code-block:: html
+.. code-block:: javascript
+
   element.coffeeColorPicker({freezeTime: 1500})
 
 To configure it on angular follow this example:
 
 .. code-block:: html
+
   <div coffee-color-picker="mySelectedColor = $color" coffee-color-picker-options="{freezeTime: 1500}"></div>
 
 

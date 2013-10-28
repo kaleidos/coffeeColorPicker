@@ -69,6 +69,8 @@ class CoffeeColorPicker
         }
 
     _move: (y, x) ->
+        if @._rect.top == 0 or @._rect.left == 0
+            @.refresh()
         y = Math.max(0, y - @._rect.top)
         x = Math.max(0, x - @._rect.left)
 
@@ -84,8 +86,8 @@ picker = (el, options) ->
     el = $(el)
     if el.data("coffeeColorPicker") is undefined
         return new CoffeeColorPicker(el, options)
-    return el.data("coffeeColorPicker")
 
+    return el.data("coffeeColorPicker")
 
 $.fn.coffeeColorPicker = (options) ->
     return picker(@, options)

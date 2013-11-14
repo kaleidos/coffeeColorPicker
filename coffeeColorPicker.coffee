@@ -28,7 +28,8 @@ class CoffeeColorPicker
 
     _onMouseWheel: (event) ->
         event.preventDefault()
-        delta = event.originalEvent.wheelDelta
+        delta = if event.originalEvent.detail then event.originalEvent.detail * (-120) else event.originalEvent.wheelDelta
+
         delta += @._prev or 0
 
         if -500 > delta || 500 < delta
@@ -42,7 +43,7 @@ class CoffeeColorPicker
     _onClick: (event) ->
         event.preventDefault()
         @.await = @.settings.freezeTime + new Date().getTime()
-        pickedColor = $.Color($(event.target), 'background').toHexString(0)
+        pickedColor = $.Color($(event.target), 'background-color').toHexString(0)
         @.el.trigger('pick', pickedColor)
 
     _bindEvents: ->
@@ -50,6 +51,9 @@ class CoffeeColorPicker
             return @._onMouseMove(event)
 
         @.el.on "mousewheel", (event) =>
+            return @._onMouseWheel(event)
+
+        @.el.on "DOMMouseScroll", (event) =>
             return @._onMouseWheel(event)
 
         @.el.on "click", (event) =>
@@ -61,7 +65,7 @@ class CoffeeColorPicker
         @.el.off "click"
 
     _setColor: (hue, sat, lit) ->
-        @.el.css("background", "hsla(#{hue}, #{sat}%, #{lit}%, 1)")
+        @.el.css("background-color", "hsla(#{hue}, #{sat}%, #{lit}%, 1)")
         @._color = {
             hue: hue,
             sat: sat,

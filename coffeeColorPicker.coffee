@@ -75,8 +75,10 @@ class CoffeeColorPicker
     _move: (y, x) ->
         if @._rect.top == 0 or @._rect.left == 0
             @.refresh()
-        y = Math.max(0, y - @._rect.top)
-        x = Math.max(0, x - @._rect.left)
+        y_offset = $(document).scrollTop()
+        x_offset = $(document).scrollLeft()
+        y = Math.max(0, y - (@._rect.top + y_offset))
+        x = Math.max(0, x - (@._rect.left + x_offset))
 
         y /= @._rect.height
         x /= @._rect.width
